@@ -1,0 +1,26 @@
+{
+    "name": "course_project",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "node backend/server.js",
+        "server": "nodemon server/index.js",
+        "client": "npm run dev --prefix client",
+        "dev": "concurrently \"npm run server\" \"npm run client\""
+    },
+    "keywords": [],
+    "author": "Usmonkhon Latipov",
+    "license": "ISC",
+    "devDependencies": {
+        "concurrently": "^8.2.2",
+        "nodemon": "^3.0.1"
+    },
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "cookie-parser": "^1.4.6",
+        "dotenv": "^16.3.1",
+        "express": "^4.18.2",
+        "mongoose": "^8.0.1"
+    }
+}
