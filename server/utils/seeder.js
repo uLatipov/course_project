@@ -6,6 +6,7 @@ import Post from "../models/postModel.js";
 import User from "../models/userModel.js";
 import Reaction from "../models/reactionModels.js";
 import dbConnect from "./dbConnect.js";
+import { hashPassword } from "./password.js";
 
 config();
 dbConnect();
