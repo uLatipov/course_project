@@ -21,7 +21,7 @@ const postSchema = new mongoose.Schema({
   image: {
     type: String,
   },
-  tags: [String],
+  tags: String,
 
   customFields: {},
 });

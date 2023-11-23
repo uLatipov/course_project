@@ -1,17 +1,27 @@
+import Post from "../models/postModel.js";
 import asyncHandler from "../utils/asyncHandler.js";
 
 // @desc   Get Posts
 // @route  GET /api/posts
 // @access Public
 const getPosts = asyncHandler(async (req, res) => {
-  res.send("get all posts");
+  const posts = await Post.find({});
+
+  res.status(200).json(posts);
 });
 
 // @desc   Get Post by ID
 // @route  GET /api/posts/:id
 // @access Public
 const getPostById = asyncHandler(async (req, res) => {
-  res.send("get post by id");
+  const postId = req.params.id;
+  const post = await Post.findById(postId);
+
+  if (post) {
+    return res.status(200).json(post);
+  }
+  res.status(404);
+  throw new Error("Post was not found");
 });
 
 // @desc   Add post
