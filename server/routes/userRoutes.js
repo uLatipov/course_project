@@ -1,6 +1,8 @@
 import { Router } from "express";
+import { protect, admin } from "../middlewares/authMiddleware.js";
 import {
   login,
+  logout,
   register,
   getUsers,
   getUserById,
@@ -12,9 +14,17 @@ import {
 
 const router = Router();
 
-router.route("/").get(getUsers).post(register);
+router.route("/").post(register).get(protect, admin, getUsers);
 router.post("/login", login);
-router.route("/my").get(getUserProfile).put(updateUserProfile);
-router.route("/:id").get(getUserById).put(updateUser).delete(deleteUser);
+router.post("/logout", protect, logout);
+router
+  .route("/my")
+  .get(protect, getUserProfile)
+  .put(protect, updateUserProfile);
+router
+  .route("/:id")
+  .get(protect, admin, getUserById)
+  .put(protect, admin, updateUser)
+  .delete(protect, admin, deleteUser);
 
 export default router;
